@@ -1,4 +1,4 @@
-/* global _ */
+/* global _, Weapon, Fighter */
 'use strict';
 $(document).ready(init);
 
@@ -9,7 +9,7 @@ function init() {
   createWeapons();
   paintWeapons();
   chooseWeapon();
-  $('#weapons').on('click', 'weapon', clickWeapon);
+  $('#weapons').on('click', '.weapon', clickWeapon);
 }
 
 var weapons = [];
@@ -17,10 +17,15 @@ var fighters = [];
 var equipped = [];
 
 function clickWeapon() {
-  var name = $(this).find('.name').text();
-  var weapon = _.find(weapons, function(w) {return w.name === name});
-  console.log(name, weapon);
-
+  var weaponName = $(this).find('.name').text();
+  var weapon = _.find(weapons, function(w) {return w.name === weaponName;});
+  var $fighter = $('.choose');
+  console.log($fighter);
+  var fighterName = $fighter.find('.name').text();
+  console.log(fighterName);
+  var fighter = _.find(fighters, function(f) {return f.name === fighterName;});
+  console.log(fighter);
+  fighter.weapon = weapon;
 }
 
 function playTheme() {
@@ -32,7 +37,6 @@ function chooseWeapon() {
   var fighter = _.sample(fighters);
   var $fighter = $('.fighter:contains("' + fighter.name + '")');
   $fighter.addClass('choose');
-
 }
 
 function createFighters() {
@@ -56,15 +60,16 @@ function paintFighters() {
     var $info = $('<div>');
     var $name = $('<div>');
     $name.text(fighter.name);
+    $name.addClass('name');
 
     var $armor = $('<div>');
-    $armor.text(fighter.armor);
+    $armor.text('Armor: ' + fighter.armor);
 
     var $health = $('<div>');
-    $health.text(fighter.health);
+    $health.text('Health: ' + fighter.health);
 
     var $strength = $('<div>');
-    $strength.text('s: ' + fighter.strength);
+    $strength.text('Strength: ' + fighter.strength);
 
     $outer.append($img, $info);
     $info.append($name, $armor, $health, $strength);
@@ -94,9 +99,10 @@ function paintWeapons() {
     var $info = $('<div>');
     var $name = $('<div>');
     $name.text(weapon.name);
+    $name.addClass('name');
 
     var $damage = $('<div>');
-    $damage.text(weapon.damage);
+    $damage.text('Damage: ' + weapon.damage);
 
     $outer.append($img, $info);
     $info.append($name, $damage);
