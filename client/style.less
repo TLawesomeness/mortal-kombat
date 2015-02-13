@@ -1,3 +1,59 @@
 h1{
   color :red;
 }
+
+body {
+  background-image:url('/images/weapons.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+#weapons {
+  .weapon {
+  background-color: #494646;
+  display: inline-block;
+  margin-right: 25px;
+  margin-top: 25px;
+
+    &> div:first-child {
+      background-position: center;
+      height: 100px;
+      width: 100px;
+      background-size: cover;
+      border: 2px solid red;
+      margin: 10px;
+    }
+
+    &> div:nth-child(2) {
+      padding: 10px;
+      font-family: monospace;
+    }
+  }
+}
+
+#fighters {
+  .fighter {
+  background-color: #494646;
+  display: inline-block;
+  margin-right: 25px;
+  margin-top: 25px;
+
+    &> div:first-child {
+      height: 100px;
+      width: 100px;
+      background-size: cover;
+      border: 2px solid red;
+      margin: 10px;
+    }
+
+    &> div:nth-child(2) {
+      padding: 10px;
+      font-family: monospace;
+    }
+  }
+}
+
+.choose {
+  border: 2px solid red;
+  background-color: red, !important;
+}
